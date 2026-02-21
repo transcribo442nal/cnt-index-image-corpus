@@ -1,0 +1,99 @@
+nolo 21, 34
+nomen 21, 70
+nomenculator 21, 80
+nomen Latinum 3, 6
+Nomentum 88, 70
+
+nominatim 21, 82
+nominativus 21, 81
+
+non 3,7
+
+nonae 62, 83
+nonae apriles 62, 90
+nonae augustae 62, 94
+nonae decembres 62, 98
+nonae februariae 62, 88
+nonae ianuariae 62, 87
+nonae iuliae 62, 93
+nonae iuniae 62, 92
+nonae malae 62, 91
+nonae martiae 62, 89
+
+nonae novembres 62, 97
+
+! nonae oetobres 62, 96
+nonae quintiles 62, 99
+
+| nonae septembres 62, 95
+nonae sextiles 62, 100
+nonaginta 61, 51
+nonaginta miha 61, 78
+non alter 71, 12
+non amat 36, 24
+
+nona pars 60, 78!
+
+nona parte 60, 78™
+nonarum 62, 86
+nonas 62, 84
+non credidit 30, 89
+
+non eredit 30, 88
+non dubitat 36, 16
+non dubium 36, 15
+
+non enim 3,8
+non excedit 11,33
+non excessit 11, 34
+
+| non excusat 30, 74
+non falht 56, 16
+
+non fefellit 56, 17
+
+non fuit 4, 98
+non frustra 56, 24
+nongenta mila 61, 87
+nongenti 61, 60
+nonies 61, 12
+non intellegit 25, 74
+non intellexit 25, 75
+nonis 62, $5
+non ita multo ante 71, 19
+non ita multo post 71, 20
+non licet 22, 11
+non longe 71, 11
+non me dius fidius 68, 54
+non me hercule 68, 60
+,non me hercules 68, 59
+
+non modo 20, 13
+
+non multo ante 11, 17
+non multo post 71, 18
+non multum 71, 16
+non negat 3, 13
+nonodecimus 61, 24"
+non oportet 29, 20 |
+non paene 22, 27° |
+non paenitet 22, 28
+
+non paenituit 22, 29. 29*
+non potes 4, 70
+
+non potes esse 4, 75
+
+non potest 4, 71 |
+non potest esse 4, 79
+
+non recedit 11, 35
+
+non recessit 11, 56
+
+n recusat 50, 75
+
+non sane 71, 15 |
+
+
+i

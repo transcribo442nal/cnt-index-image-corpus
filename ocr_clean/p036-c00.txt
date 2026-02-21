@@ -1,0 +1,112 @@
+w
+pro salute 64, 2 p
+prosapia 92, 100 p:
+proscenium 106, 65 p
+proscholium 101, 8 p
+proscholus 101, 7 p:
+proseidit 82, 76° | p:
+proseindit 82, 76° P
+proscissum 82, 76^ p
+proseribit 6, 93 p
+proseripsit 7, 5 |p
+proseripbura 7, 10° p
+prosegit 58, 99 p
+prosequitur 30, 8° p
+Proserpina 58, 100 p
+prospectat 25, 57 p
+prospere 31, 55 p
+prospexit 26, 49 P
+
+prospicit 26, 40 P
+prosternit 54, 90 P
+prostibulum 96, 67 P
+prostratum 54, 92 P
+
+prostravit 54, 91 P
+Protasii 128, 33 P
+protaules 107, 8 P
+protectum 80, 16 P
+
+protegit 80, 7; 96, 39
+protendit 11, 84 p
+
+protentus 12,9 p
+protenus 49, 32 p
+protervus 66, 44 ip
+protexit 80, 11; 96, 40 p
+
+protinet 6, 56 p
+
+protoplastum 106, 47” n
+
+protractum 35, 42 à p
+
+protrahit 35, 96 p
+
+protraxit 35, 34 p
+
+protricat 92, 67 p
+
+protuli 22, 88 pP
+
+proturbat 49, 82 p
+
+provectum 42, 6° p
+
+provehit. 42, 6° p
+
+provenit 20, 53° |p
+
+proventus 20, 60* |p
+
+proverbium 26, 6 | p
+
+provertit 98, 1^ p
+
+provexit. 42, 6* p
+
+providenüa 25, 47 p
+
+providet 25, 43^ p
+
+providus 25, 45 B
+
+provincia 45, 86 p
+
+provincialis 45, 87 p
+
+provisus 13, 68 p
+
+provocat 32, 27 p
+
+provolat 75, 97 p
+
+: provolvit 75, 89 p
+provulgat 42, 92 p
+proximus 25, 28 p
+prudens 52, 52 p
+
+prudentissimus 52, 54 p
+pruna 59,18 p
+prunus 105, 36; 130, 83 p
+pruriginosum 111, 83 p
+
+prurigo 111, 82 p
+
+prymna 109, 78 jp
+
+psallit 106, 56 | p
+
+psalmographus 117, 87° p
+psalterium 106, 56* lp
+psap 19, 80 | p
+psep 19,81 B
+pseudosericum 98, 47 p
+psilocitharisis 106, 85 p
+psilocitharistes 106, 86 p
+psilotrum 102, 11 p
+psp 19,82 I
+
+Comm. not tir.
+
+i
