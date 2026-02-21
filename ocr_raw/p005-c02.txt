@@ -1,0 +1,75 @@
+a =
+6 | auctio 57, 20
+auctionarius 57, 22
+auctiuncula 57, 21
+| auctor 42, 38
+, auctoramentum 42, 42
+auctorat 42, 39
+| auctoraticis 42, 41
+25, auctoritas 42, 40
+, auctum 57, 18
+| aucupex 93, 17
+aucupiamen 93, 19
+| aucupium 93,18
+audax 43, 39
+| audet 42, 58
+| audit. 27, 46
+aufer 22, 60°
+aufert 29, 64*
+Aufidius 114, 91
+| aufügit 26, 93*
+| aufügit 26, 26?
+j8; | Aufuscius 114, 90
+augescit 91, 76
+auget 57, 14
+j augur 55, 81
+augurialis 55, 83
+| augurionalis 55, 84
+| augurium 55, 82
+Augustalis 55, 86
+| Augustini 128, 26
+| Augustodunum 86, 81
+Augustonemetum 87,8
+Augustoretum 87, 16
+| augustus 55, 85; 62, 60
+aula 104, 45
+| aulaeum 106, 66
+| Aulerci 87, 61
+Aulus 114, 66
+‘aurarium 77,15
+Aurelianis 87, 24
+Aurelianus 114, 79?
+, Aurelius 114, 79
+aureum 77,14
+| auricula 99, 79
+, aurifex 77, 17
+, aurifodima 77, 23
+ aunga 112,77
+ &urgarius 112,78
+| auris 99, 71
+| aurochaleum 77, 16
+aurum 77,13
+ Aurunculeius 114, 80
+Auscius 87 36
+auseultat 27, 52°
+auscultatur (-or) 97, 53
+Ausopetum 84, 61
+auspex 47, 72
+auspicatur 47, 71
+auspicium 47, 70
+| auster 110, 73
+austerus 65, 65
+| australis 110, 74
+' Austrasiorum 110, 74*
+ausus £3, 40
+aut 2,59
+autem 2, 40
+authenta 95, 11
+authenticus 93, 12
+| Autisioderum 87, 23
+Autricum 86, 98
+, Autronianus 114, 86
+| Autronius 114, 85
+autumnahs 69, 25
+autumnus 69, 24
+auxilianus 39, 33
