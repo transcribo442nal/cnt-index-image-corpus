@@ -1,121 +1,117 @@
 <!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CNT Index Browser (Schmitz) — transcribo442nal</title>
+<title>CNT Index Browser (Schmitz)</title>
+
 <style>
-  body { font-family: system-ui, sans-serif; margin: 16px; line-height: 1.35; }
-  input { width: 100%; font-size: 16px; padding: 10px; }
-  .row { padding: 10px 6px; border-bottom: 1px solid #ddd; }
-  .lemma { font-weight: 700; }
-  .meta { color: #555; font-size: 13px; }
-  .refs { margin-top: 6px; font-family: ui-monospace, monospace; font-size: 13px; white-space: pre-wrap; }
-  .chip { display:inline-block; padding:2px 6px; margin:2px 4px 2px 0; border:1px solid #bbb; border-radius: 10px; cursor:pointer; }
-  .chip:hover { background:#f2f2f2; }
-  .small { color:#666; font-size:12px; }
+body { font-family: system-ui, sans-serif; margin: 16px; }
+input { width:100%; font-size:16px; padding:10px; box-sizing:border-box; }
+.row { padding:10px 6px; border-bottom:1px solid #ddd; }
+.lemma { font-weight:700; }
+.meta { color:#666; font-size:12px; margin-top:2px; }
+.refs { margin-top:6px; font-family: ui-monospace, monospace; font-size:13px; white-space: normal; }
+.chip {
+  display:inline-block;
+  padding:2px 6px;
+  margin:2px 4px 2px 0;
+  border:1px solid #bbb;
+  border-radius:10px;
+  text-decoration:none;
+  color:inherit;
+}
+.chip:hover { background:#f2f2f2; }
+.small { color:#666; font-size:12px; }
 </style>
 
 <h1>CNT Index Browser (Schmitz)</h1>
-<p class="small">
-Dataset: 48 pages / 192 columns. Search is client-side.
-</p>
+<p class="small">Dataset: 48 pages / 192 columns. Search is client-side.</p>
 
 <input id="q" placeholder="Search lemma… (e.g. ab angelis, Aaron, Zeno)">
-
 <div id="out"></div>
 
 <script>
 let INDEX = null;
-let REFS = null;
-let REFS_BY_IDX = new Map();
-let REVERSE = new Map(); // ref_norm -> [{cnt_idx, lemma_key, lemma}...]
 
-function fmtRef(r){
-  if (r.ref_type === "SIGLA_ONLY") return r.ref_norm;
-  let core = r.ref_type === "RANGE_START" ? (r.ref_norm + "-") : r.ref_norm;
-  let s = core;
-  if (r.sigla) s = r.sigla + " " + s;
-  if (r.marks) s = s + " " + r.marks;
-  return s.trim();
+function pad3(n){ return String(n).padStart(3,"0"); }
+
+function tabFullHref(tab){
+  const t = pad3(tab);
+  return `tabs_full/${t}/Tab${t}.jpg`;
 }
 
-function buildMaps(){
-  for (const r of REFS){
-    if (!REFS_BY_IDX.has(r.cnt_idx)) REFS_BY_IDX.set(r.cnt_idx, []);
-    REFS_BY_IDX.get(r.cnt_idx).push(r);
+// Accept ref forms:
+// - "1,17" or "001,017"
+// - {tab:1, ent:17}
+// - [1,17]
+function parseRef(r){
+  if (r == null) return null;
 
-    if (r.ref_type === "REF" || r.ref_type === "RANGE_START"){
-      const key = r.ref_norm;
-      if (!REVERSE.has(key)) REVERSE.set(key, []);
-      REVERSE.get(key).push(r.cnt_idx);
-    }
+  if (typeof r === "string"){
+    const m = r.trim().match(/^(\d+)\s*,\s*(\d+)$/);
+    if (!m) return null;
+    return {tab:Number(m[1]), ent:Number(m[2])};
   }
+  if (Array.isArray(r) && r.length >= 2){
+    const tab = Number(r[0]), ent = Number(r[1]);
+    if (Number.isFinite(tab) && Number.isFinite(ent)) return {tab, ent};
+    return null;
+  }
+  if (typeof r === "object"){
+    const tab = Number(r.tab ?? r.TAB);
+    const ent = Number(r.ent ?? r.ENT);
+    if (Number.isFinite(tab) && Number.isFinite(ent)) return {tab, ent};
+    return null;
+  }
+  return null;
 }
 
-function render(query){
+function esc(s){
+  return String(s)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#39;");
+}
+
+function renderRows(rows){
   const out = document.getElementById("out");
-  out.innerHTML = "";
-  if (!INDEX) return;
+  out.innerHTML = rows.map(row => {
+    const lemma = row.lemma ?? row.LEMMA ?? "";
+    const lemma_key = row.lemma_key ?? row.LEMMA_KEY ?? "";
+    const cnt_idx = row.cnt_idx ?? row.idx ?? row.index ?? "";
 
-  const q = query.trim().toLowerCase();
-  const hits = q ? INDEX.filter(x =>
-    x.lemma_key.includes(q) || x.lemma.toLowerCase().includes(q)
-  ) : INDEX.slice(0, 50);
+    const refs = row.refs ?? row.REFS ?? [];
+    const refsHtml = refs.map(r => {
+      const p = parseRef(r);
+      if (!p) return "";
+      const label = `${pad3(p.tab)},${pad3(p.ent)}`;
+      const href = tabFullHref(p.tab);
+      return `<a class="chip" href="${href}" target="_blank" rel="noopener">${label}</a>`;
+    }).join("");
 
-  const max = 200;
-  const show = hits.slice(0, max);
-
-  const h = document.createElement("div");
-  h.className = "meta";
-  h.textContent = q ? `hits: ${hits.length} (showing first ${show.length})` : `showing first ${show.length} (type to search)`;
-  out.appendChild(h);
-
-  for (const row of show){
-    const div = document.createElement("div");
-    div.className = "row";
-
-    const title = document.createElement("div");
-    title.innerHTML = `<span class="lemma">${row.lemma}</span> <span class="small">(${row.cnt_idx})</span>`;
-    div.appendChild(title);
-
-    const meta = document.createElement("div");
-    meta.className = "meta";
-    meta.textContent = `src: ${row.src}:${row.line}  lemma_key: ${row.lemma_key}`;
-    div.appendChild(meta);
-
-    const refs = (REFS_BY_IDX.get(row.cnt_idx) || []).slice().sort((a,b)=>a.ref_no-b.ref_no);
-
-    const refBox = document.createElement("div");
-    refBox.className = "refs";
-
-    // render as clickable chips
-    for (const r of refs){
-      const chip = document.createElement("span");
-      chip.className = "chip";
-      chip.textContent = fmtRef(r);
-      chip.title = `${r.ref_type}  ${r.src}:${r.line} g${r.group_no} r${r.ref_no}`;
-
-      // clicking a REF shows reverse hits for that ref_norm
-      chip.onclick = () => {
-        if (!(r.ref_type === "REF" || r.ref_type === "RANGE_START")) return;
-        const ids = REVERSE.get(r.ref_norm) || [];
-        alert(`${r.ref_norm} occurs in ${ids.length} CNT-IDX rows\n\n` + ids.slice(0,50).join("\n") + (ids.length>50? "\n…": ""));
-      };
-
-      refBox.appendChild(chip);
-    }
-    div.appendChild(refBox);
-
-    out.appendChild(div);
-  }
+    return `<div class="row">
+      <div class="lemma">${esc(lemma)}</div>
+      <div class="meta">cnt_idx: ${esc(cnt_idx)}${lemma_key ? " · lemma_key: "+esc(lemma_key) : ""}</div>
+      <div class="refs">${refsHtml}</div>
+    </div>`;
+  }).join("");
 }
 
-async function boot(){
-  INDEX = await (await fetch("data_index.json")).json();
-  REFS  = await (await fetch("data_refs.json")).json();
-  buildMaps();
-  render("");
+async function main(){
+  const idxResp = await fetch("data_index.json");
+  INDEX = await idxResp.json();
+
+  // initial window
+  renderRows(INDEX.slice(0,200));
+
+  document.getElementById("q").addEventListener("input", (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    if (!q) { renderRows(INDEX.slice(0,200)); return; }
+    const hits = INDEX.filter(r => String(r.lemma ?? r.LEMMA ?? "").toLowerCase().includes(q)).slice(0,500);
+    renderRows(hits);
+  });
 }
 
-document.getElementById("q").addEventListener("input", (e)=>render(e.target.value));
-boot();
+main();
 </script>
